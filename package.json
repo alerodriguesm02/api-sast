@@ -1,0 +1,62 @@
+{
+  "name": "vulnerable-nodejs-sast-demo",
+  "version": "1.0.0",
+  "description": "Aplicação Node.js com vulnerabilidades para teste de SAST com SonarCloud, Snyk e outras ferramentas",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "mocha tests/**/*.test.js --timeout 10000 --exit",
+    "test:coverage": "nyc --reporter=html --reporter=text --reporter=lcov --reporter=json mocha tests/**/*.test.js --timeout 10000 --exit",
+    "test:watch": "mocha tests/**/*.test.js --watch",
+    "coverage:check": "nyc check-coverage --lines 70 --functions 70 --branches 60 --statements 70",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix"
+  },
+  "author": "Security Testing Team",
+  "license": "MIT",
+"dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "xml2js": "^0.6.2",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "chai": "^4.3.10",
+    "sinon": "^17.0.1",
+    "supertest": "^6.3.3",
+    "nyc": "^15.1.0",
+    "eslint": "^8.54.0",
+    "eslint-plugin-security": "^1.7.1",
+    "eslint-plugin-sonarjs": "^0.23.0",
+    "@typescript-eslint/parser": "^6.13.0"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 70,
+    "functions": 70,
+    "branches": 60,
+    "statements": 70,
+    "reporter": [
+      "text",
+      "html",
+      "lcov",
+      "json"
+    ],
+    "exclude": [
+      "tests/**",
+      "coverage/**",
+      "node_modules/**",
+      "**/*.test.js"
+    ],
+    "all": true,
+    "report-dir": "./coverage"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
