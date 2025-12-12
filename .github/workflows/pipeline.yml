@@ -1,0 +1,38 @@
+name: Entrega P2
+
+on:
+  push:
+    branches: ['main', 'develop']
+
+jobs:
+  [cite_start]ci-security: # Etapa de Integração e Testes [cite: 27]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
+      - [cite_start]run: npm install # [cite: 29]
+      - [cite_start]run: npm test # [cite: 30]
+      - [cite_start]name: SonarCloud Scan # [cite: 18, 30]
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  [cite_start]cd-deploy: # Etapa de Entrega Continua [cite: 36]
+    needs: ci-security
+    if: github.ref == 'refs/heads/main' # Só deploy na main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: | # Requisito: Tag Latest e Versionamento [cite: 38]
+            ${{ secrets.DOCKER_USERNAME }}/entrega-p2:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/entrega-p2:latest
+      - [cite_start]run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }} #
