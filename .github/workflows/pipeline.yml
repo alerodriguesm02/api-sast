@@ -28,6 +28,7 @@ jobs:
           DB_PASSWORD: "teste"
           DB_NAME: "teste_db"
           PORT: "3000"
+          JWT_SECRET: "minha_senha_super_secreta_de_teste"
 
       - name: SAST Scan (SonarCloud)
         uses: SonarSource/sonarcloud-github-action@master
