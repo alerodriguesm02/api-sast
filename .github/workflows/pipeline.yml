@@ -25,7 +25,7 @@ jobs:
           # Injetamos valores falsos apenas para a aplicação não travar ao iniciar
           DB_HOST: "127.0.0.1"
           DB_USER: "teste"
-          DB_PASS: "teste"
+          DB_PASSWORD: "teste"
           DB_NAME: "teste_db"
           PORT: "3000"
 
