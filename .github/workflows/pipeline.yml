@@ -22,11 +22,11 @@ jobs:
       - name: Run Tests
         run: npm test
         env:
-          # Injetamos valores falsos apenas para a aplicação não travar ao iniciar
-          DB_HOST: "127.0.0.1"
-          DB_USER: "teste"
-          DB_PASSWORD: "teste"
-          DB_NAME: "teste_db"
+          
+          DB_HOST: "dpg-d4pm0p2dbo4c73bdd1og-a"
+          DB_USER: "p2cicd_user"
+          DB_PASSWORD: "4R10Cqjv5Uj2zIQiT3UNNarw1LyWHhAX"
+          DB_NAME: "p2cicd"
           PORT: "3000"
           JWT_SECRET: "minha_senha_super_secreta_de_teste"
 
