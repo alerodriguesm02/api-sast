@@ -23,7 +23,6 @@ jobs:
         continue-on-error: true
         run: npm test
         env:
-          
           DB_HOST: "dpg-d4pm0p2dbo4c73bdd1og-a"
           DB_USER: "p2cicd_user"
           DB_PASSWORD: "4R10Cqjv5Uj2zIQiT3UNNarw1LyWHhAX"
